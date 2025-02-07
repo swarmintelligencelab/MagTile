@@ -14,7 +14,7 @@ This subdirectory includes the physical design files and electronic schematics r
 - **`pcb/`**: Contains detailed schematics outlining the design of the printed circuit board (PCB) used for actuating and controlling the solenoids.
 
 ### **3. Computational Implementation**
-This subdirectory contains all the MATLAB codes necessary for the computational implementation of MagTile. These scripts allow for the simulation and analysis of the system's behavior and are referenced in the associated research paper.
+This subdirectory contains all the MATLAB codes necessary for the computational implementation of MagTile. These scripts allow for the simulation and control of the system's behavior
 
 ### **4. Software Implementation**
 This subdirectory includes all scripts required for real-time operation and control of the actuation platform:
