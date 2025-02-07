@@ -1,8 +1,30 @@
 # MagTile
-This repo contains the hardware and software implementation of the actuation system. Additionally, the repo contains a computational implementation of the system on MATLAB.
 
-A total of 4 subdirectories consolidate the necessary information and code to reconstruct the actuation system. 
-- data: The subdirectory contains the raw data used in calibration.
-- hardware: The subdirectory contains two folders. The first, titled 'cad', contains all the CAD files in STL format describing the 3D printed parts used in the assembly of the actuation system. The second folder, titled 'pcb', contains a file with the detailed schematics of describing the design of the PCB used to actuate and control the solenoids.
-- simulations: The subdirectory contains all the MATLAB files required to run the simulations used in this study, which are demonstrated in the paper.
-- software_implementation: The subdirectory contains all the scripts necessary to operate the platform, including the Python implementation responsible for tracking and streaming of data, and the Arduino script operating the solenoids.
+This repository contains the hardware and software implementation of the MagTile actuation system. Additionally, it includes a computational model of the system implemented in MATLAB.
+
+## Repository Structure
+The repository is organized into four main subdirectories, each containing the necessary information and code to reconstruct and operate the actuation system.
+
+### **1. Data**
+This subdirectory contains the raw data used for system calibration, ensuring accurate and repeatable actuation behavior.
+
+### **2. Hardware**
+This subdirectory includes the physical design files and electronic schematics required for building the MagTile system:
+- **`cad/`**: Contains all CAD files in STL format, representing the 3D-printed components used in the assembly of the actuation system.
+- **`pcb/`**: Contains detailed schematics outlining the design of the printed circuit board (PCB) used for actuating and controlling the solenoids.
+
+### **3. Computational Implementation**
+This subdirectory contains all the MATLAB codes necessary for the computational implementation of MagTile. These scripts allow for the simulation and analysis of the system's behavior and are referenced in the associated research paper.
+
+### **4. Software Implementation**
+This subdirectory includes all scripts required for real-time operation and control of the actuation platform:
+- **Python Scripts**: Responsible for tracking and streaming data.
+- **Arduino Scripts**: Handle the control logic for operating the solenoids.
+
+## Usage
+1. Navigate to the relevant subdirectory for the required functionality (e.g., computational implementation, hardware design, or software operation).
+2. Run the MATLAB scripts to simulate the system's behavior.
+3. Utilize the Python and Arduino scripts to control the actuation system in real-time.
+
+For detailed implementation and additional information, refer to the accompanying research paper.
+
