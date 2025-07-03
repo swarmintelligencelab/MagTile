@@ -6,7 +6,7 @@ We evaluated how varying levels of detection noise (parameterized by $p$ affecte
 
 For each value of $p$, we ran **100 independent trials**, where each trial simulated the system from random initial conditions over **100 time steps**. This simulation length was chosen because the unperturbed system typically stabilizes within the first 10 steps.
 
-As expected, a higher probability of tracking failures results in greater deviations from the desired trajectory and more frequent collision avoidance maneuvers. This emphasizes the system’s reliance on reliable tracking and the need for consistent lighting and strong contrast between the object and background to ensure accurate visual detection. However, in controlled animal-robot interaction experiments, this challenge can be addressed by carefully designing the environment to enhance visual conditions and reduce the likelihood of detection errors.
+As expected (visualized in the figures below), a higher probability of tracking failures results in greater deviations from the desired trajectory and more frequent collision avoidance maneuvers. This emphasizes the system’s reliance on reliable tracking and the need for consistent lighting and strong contrast between the object and background to ensure accurate visual detection. However, in controlled animal-robot interaction experiments, this challenge can be addressed by carefully designing the environment to enhance visual conditions and reduce the likelihood of detection errors. 
 
 ![Figure Description](Fig_2_reply_a-1.png)
 
