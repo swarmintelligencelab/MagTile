@@ -1,10 +1,10 @@
 # Time-Series Generation
 
-Here we consider scenarios where the tracking system results in a noisy measurement. To do this, we introduced probabilistic noise into the tracking mechanism, where each frame had a probability \( p \) of experiencing an error—representing transient disruptions in tracking. As \( p \) increased, these disturbances became more frequent. When a failure occurred, a measurement error was sampled from a zero-mean Gaussian distribution with variance 25 and added to the agents’ observed positions.
+Here we consider scenarios where the tracking system results in a noisy measurement. To do this, we introduced probabilistic noise into the tracking mechanism, where each frame had a probability $p$ of experiencing an error—representing transient disruptions in tracking. As $p$ increased, these disturbances became more frequent. When a failure occurred, a measurement error was sampled from a zero-mean Gaussian distribution with variance 25 and added to the agents’ observed positions.
 
-We evaluated how varying levels of detection noise (parameterized by \( p \)) affected system performance. In particular, we measured each agent’s **tracking error** \( E \) relative to its reference trajectory at steady-state (denoted as the norm of the error of each agent with respect to its corresponding reference trajectory) and counted the number of **collision avoidance maneuvers** \( N_A \) that were triggered. 
+We evaluated how varying levels of detection noise (parameterized by $p$ affected system performance. In particular, we measured each agent’s **tracking error** $E$ relative to its reference trajectory at steady-state (denoted as the norm of the error of each agent with respect to its corresponding reference trajectory) and counted the number of **collision avoidance maneuvers** $N_\mathrm{A}$ that were triggered. 
 
-For each value of \( p \), we ran **100 independent trials**, where each trial simulated the system from random initial conditions over **100 time steps**. This simulation length was chosen because the unperturbed system typically stabilizes within the first 10 steps.
+For each value of $p$, we ran **100 independent trials**, where each trial simulated the system from random initial conditions over **100 time steps**. This simulation length was chosen because the unperturbed system typically stabilizes within the first 10 steps.
 
 
 # Time-Series Visualization
