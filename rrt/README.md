@@ -5,5 +5,7 @@ Here, to showcase the versatility of MagTile to different path planning, and obs
 In the figures below we showcase how each agent tracks their corresponding reference. We also show case the position, velocity, and error for each agent against time in both the x and y directions along the grid.
 
 ![Figure Description](rrt.png)
+\\
 ![Figure Description](agent_1_rrt.png)
+\\
 ![Figure Description](agent_2_rrt.png)
