@@ -1,6 +1,6 @@
-# 🧭 Discrete Trajectory Mapping and Visualization
+# Discrete Trajectory Mapping and Visualization
 
-This project provides a MATLAB-based workflow to map a real-world continuous trajectory onto a discrete grid and visualize both the reference (idealized) trajectory and the actual experimental maneuver. The goal is to compare ideal grid-following behavior with real movement in a structured, interpretable way.
+Here a MATLAB-based workflow is provided to map a continuous trajectory from real-experiments of zebrafish simming/locomotion behavior onto a discrete grid, mimicking the MagTile platform, and visualize both the reference (idealized) trajectory and the actual experimental maneuver. The goal is to compare ideal grid-following behavior with real movement in a structured, interpretable way.
 
 ---
 
@@ -38,13 +38,5 @@ Both the idealized (resolved) and real (continuous) trajectories are plotted tog
 - Start and end positions are clearly marked using distinct colors and shapes.
 - Grid points are plotted in the background for spatial reference.
 
-Custom axis ticks and labels using LaTeX formatting allow intuitive interpretation of spatial extents like ±xₘₐₓ and ±yₘₐₓ.
-
 ---
 
-## 📌 Applications
-
-- Visual debugging of motion planners
-- Analyzing deviations between planned and executed paths
-- Preparing datasets for grid-based control or reinforcement learning
-- Robotic navigation or multi-agent behavior benchmarking
