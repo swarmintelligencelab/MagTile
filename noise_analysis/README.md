@@ -7,7 +7,7 @@ We evaluated how varying levels of detection noise (parameterized by \( p \)) af
 For each value of \( p \), we ran **100 independent trials**, where each trial simulated the system from random initial conditions over **100 time steps**. This simulation length was chosen because the unperturbed system typically stabilizes within the first 10 steps.
 
 
-# 📈 Time-Series Visualization
+# Time-Series Visualization
 
 This MATLAB script visualizes the evolution of a variable over time by plotting the **mean trajectory** across multiple trials along with a shaded region representing the **standard deviation**. This type of visualization is commonly used in experimental and simulation-based research to show variability across repeated runs or subjects.
 
