@@ -8,7 +8,7 @@ For each value of $p$, we ran **100 independent trials**, where each trial simul
 
 As expected, a higher probability of tracking failures results in greater deviations from the desired trajectory and more frequent collision avoidance maneuvers. This emphasizes the system’s reliance on reliable tracking and the need for consistent lighting and strong contrast between the object and background to ensure accurate visual detection. However, in controlled animal-robot interaction experiments, this challenge can be addressed by carefully designing the environment to enhance visual conditions and reduce the likelihood of detection errors.
 
-![Figure Description](MagTile/noise_analysis/Fig_2_reply_a-1.png)
+![Figure Description](Fig_2_reply_a-1.png)
 
 ![Figure Description](MagTile/noise_analysis/Fig_2_reply_b-1.png)
 
