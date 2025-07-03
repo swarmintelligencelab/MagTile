@@ -45,5 +45,5 @@ The script loads precomputed simulation or experimental data from a `.mat` file,
 ## 📌 Output
 
 The result is two high-quality plots:
-1. **$N_{\mathrm{A}}$ vs. time ($p$)** — showing the average trajectory of some count variable.
-2. **$E$ vs. time ($p$)** — showing the average trajectory of an error or energy variable.
+1. **$N_{\mathrm{A}}$ vs. $p$** — showing the average trajectory of some count variable.
+2. **$E$ vs. $p$** — showing the average trajectory of an error or energy variable.
