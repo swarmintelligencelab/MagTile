@@ -55,11 +55,11 @@ fig = figure( ...
 ax = axes('Parent', fig, 'Color', 'w'); 
 hold(ax, 'on'); grid(ax, 'on'); box(ax, 'on'); axis(ax, 'equal');
 
-% Real trajectory: solid black
-h1 = plot3(t_real_ds, x_real_ds, y_real_ds, 'r--', 'LineWidth', 2);
+
+h1 = plot3(t_real_ds, x_real_ds, y_real_ds, '--', 'Color', [0.3 0.75 0.93], 'LineWidth', 2);
 
 % Reference trajectory: dashed red
-h2 = plot3(t, x_ref, y_ref, 'k-', 'LineWidth', 2);
+h2 = plot3(t, x_ref, y_ref, 'Color', [1, 0.6, 0], 'LineWidth', 2);
 
 yticks([-10, 10])
 zticks([-10, 10])
@@ -84,4 +84,4 @@ set(gca, ...
 
 
 
-
+axis tight 
