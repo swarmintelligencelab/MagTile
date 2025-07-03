@@ -10,7 +10,7 @@ As expected, a higher probability of tracking failures results in greater deviat
 
 ![Figure Description](Fig_2_reply_a-1.png)
 
-![Figure Description](MagTile/noise_analysis/Fig_2_reply_b-1.png)
+![Figure Description](Fig_2_reply_b-1.png)
 
 
 # Time-Series Visualization
