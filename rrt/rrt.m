@@ -14,9 +14,9 @@ H = 2.485; % Height of the plane above the origin: 2.485 cm
 alpha = 22042.7968;  % Magnetic force coefficient: 22042.7968 calculated in cm
 beta = 15.5488; % Damping coefficient: 15.5488 calculated in cm
 
-MagRng = 1.5*GridSpacing; % Magnetic force range
+MagRng = 2*GridSpacing; % Magnetic force range
 MagForceFar = 1; % Magnetic force multiplier: 1
-MagRngTest = 5*MagRng; % Magnetic disk distance test range
+MagRngTest = 0.5*MagRng; % Magnetic disk distance test range
 MagRngWeight = 2*MagRng; % Weight adjustion range
 
 dt = 0.001;  % Simulation time step
@@ -338,164 +338,145 @@ end
 % =========================================
 
 % Plot the trajectory
+close all
+
 figure(99);
+
+set(gcf, 'Color', 'w');          % Set figure background to white
+set(gca, 'Color', 'w');  
+set(0, 'DefaultFigureColor', 'w');                 % White figure background
+set(0, 'DefaultAxesColor', 'w');                   % White axes background
+set(0, 'DefaultAxesXColor', 'k');                  % Black x-axis ticks and labels
+set(0, 'DefaultAxesYColor', 'k');                  % Black y-axis ticks and labels
+set(0, 'DefaultAxesZColor', 'k');                  % Black z-axis ticks and labels
+set(0, 'DefaultTextColor', 'k');   
+set(0, 'DefaultAxesFontSize', 14);           % All axes tick label fonts
+set(0, 'DefaultTextFontSize', 16);           % All titles and label fonts
+set(0, 'DefaultLegendFontSize', 10);      % Legend font size
+set(0, 'DefaultLegendTextColor', 'k');       % Legend text color
+set(0, 'DefaultLegendColor', 'w');           % Legend box background white
+set(0, 'DefaultLegendEdgeColor', 'k');       % Legend border black
 clf(99);
 axis([[-1, 1]*(floor(GridSpacing*(xGridSize-1)/2)+1), ...
     [-1, 1]*(floor(GridSpacing*(yGridSize-1)/2)+1)]);
 pbaspect([1, 1, 1]); daspect([1, 1, 1]);
 box on; grid on;
 hold on;
-plot(xGrid(:), yGrid(:), 'g*');
+plot(xGrid(:), yGrid(:), 'k*');
 plot(x1Disk, y1Disk, 'r-', 'LineWidth', 2);
 plot(xy1RefPlot(1,:), xy1RefPlot(2,:), 'b--', 'LineWidth', 2);
-plot(x2Disk, y2Disk, 'm-', 'LineWidth', 2);
-plot(xy2RefPlot(1,:), xy2RefPlot(2,:), 'c--', 'LineWidth', 2);
-title('Reference and Actual Trajectory of Moving Dipoles');
-xlabel('X position');
-ylabel('Y position');
+plot(x2Disk, y2Disk, 'k-', 'LineWidth', 2);
+plot(xy2RefPlot(1,:), xy2RefPlot(2,:), 'g--', 'LineWidth', 2);
+title('');
+xlabel('$\mathcal{X}$ (cm)', 'Interpreter','latex');
+ylabel('$\mathcal{Y}$ (cm)', 'Interpreter','latex');
 legend('Coil grid', 'Disk 1 pos', 'Ref 1 pos', 'Disk 2 pos', 'Ref 2 pos', ...
     'location', 'northeastoutside');
 hold off;
 print(gcf, 'fig1.pdf', '-dpdf', '-painters', '-bestfit')
 
-% Plot reference signals and errors
 figure;
-subplot(3, 2, 1);
+% set(gca, 'Position', [0.1 0.1 0.9 0.9])
+set(gcf, 'Color', 'w');          % Set figure background to white
+set(gca, 'Color', 'w');  
+set(0, 'DefaultFigureColor', 'w');                 % White figure background
+set(0, 'DefaultAxesColor', 'w');                   % White axes background
+set(0, 'DefaultAxesXColor', 'k');                  % Black x-axis ticks and labels
+set(0, 'DefaultAxesYColor', 'k');                  % Black y-axis ticks and labels
+set(0, 'DefaultAxesZColor', 'k');                  % Black z-axis ticks and labels
+set(0, 'DefaultTextColor', 'k');   
+set(0, 'DefaultAxesFontSize', 14);           % All axes tick label fonts
+set(0, 'DefaultTextFontSize', 16);           % All titles and label fonts
+set(0, 'DefaultLegendFontSize', 10);       % Legend font size
+set(0, 'DefaultLegendTextColor', 'k');       % Legend text color
+set(0, 'DefaultLegendColor', 'w');           % Legend box background white
+set(0, 'DefaultLegendEdgeColor', 'k');  
 hold on;
-plot(vt, x1Disk, '-');
-plot(vt, xy1RefPlot(1, :), '--');
-title('X1 Reference and Actual Positions');
-xlabel('Time Step');
-ylabel('X Position');
-hold off;
+plot(vt, xy1RefPlot(1,:), 'b--', 'LineWidth', 2);    % Agent 1 reference (red)
+plot(vt, x1Disk, 'r-', 'LineWidth', 2);              % Agent 1 actual (blue)
+plot(vt, xy2RefPlot(1,:), '--', 'Color', [0 1 0], 'LineWidth', 2);  % Agent 2 reference (light blue)
+plot(vt, x2Disk, '-', 'Color', [0 0 0], 'LineWidth', 2);          % Agent 2 actual (purple)
+title('');
+xlabel('$t$ (s)', 'Interpreter','latex');
+ylabel('$\mathcal{X}$ (cm)', 'Interpreter','latex');
+legend({'Agent 1 Ref', 'Agent 1 Pos', 'Agent 2 Ref', 'Agent 2 Pos'}, ...
+    'Location', 'best', 'Color', 'w', 'Location', 'northeastoutside');
+set(gca, 'FontSize', 20, 'XColor', 'k', 'YColor', 'k');
 
-subplot(3, 2, 2);
-hold on;
-plot(vt, y1Disk, '-');
-plot(vt, xy1RefPlot(2, :), '--');
-title('Y1 Reference and Actual Positions');
-xlabel('Time Step');
-ylabel('Y Position');
-hold off;
-
-subplot(3, 2, 3);
-plot(vt, vx1Disk, '-');
-title('X1 Velocity');
-xlabel('Time Step');
-ylabel('X Velocity');
-
-subplot(3, 2, 4);
-plot(vt, vy1Disk, '-');
-title('Y1 Velocity');
-xlabel('Time Step');
-ylabel('Y Velocity');
-
-subplot(3, 2, 5);
-hold on;
-plot(vt, u1IndPlot, '-');
-plot(vt, u1RefIndPlot, '--');
-title('Reference and Actual Control Signals 1');
-xlabel('Time Step');
-ylabel('Control Signal');
-hold off;
-
-subplot(3, 2, 6);
-plot(vt, e1NormPlot, '-');
-title('Error Norm 1');
-xlabel('Time Step');
-ylabel('Error Norm');
-
-print(gcf, 'fig2.pdf', '-dpdf', '-painters', '-bestfit')
 
 figure;
-subplot(3, 2, 1);
+% set(gca, 'Position', [0.1 0.1 0.7 0.85])
+set(gcf, 'Color', 'w');          % Set figure background to white
+set(gca, 'Color', 'w');  
+set(0, 'DefaultFigureColor', 'w');                 % White figure background
+set(0, 'DefaultAxesColor', 'w');                   % White axes background
+set(0, 'DefaultAxesXColor', 'k');                  % Black x-axis ticks and labels
+set(0, 'DefaultAxesYColor', 'k');                  % Black y-axis ticks and labels
+set(0, 'DefaultAxesZColor', 'k');                  % Black z-axis ticks and labels
+set(0, 'DefaultTextColor', 'k');   
+set(0, 'DefaultAxesFontSize', 14);           % All axes tick label fonts
+set(0, 'DefaultTextFontSize', 16);           % All titles and label fonts
+set(0, 'DefaultLegendFontSize', 10);       % Legend font size
+set(0, 'DefaultLegendTextColor', 'k');       % Legend text color
+set(0, 'DefaultLegendColor', 'w');           % Legend box background white
+set(0, 'DefaultLegendEdgeColor', 'k');  
 hold on;
-plot(vt, x2Disk, '-');
-plot(vt, xy2RefPlot(1, :), '--');
-title('X2 Reference and Actual Positions');
-xlabel('Time Step');
-ylabel('X Position');
-hold off;
+plot(vt, xy1RefPlot(2,:), 'b--', 'LineWidth', 2);    % Agent 1 reference (red)
+plot(vt, y1Disk, 'r-', 'LineWidth', 2);              % Agent 1 actual (blue)
+plot(vt, xy2RefPlot(2,:), '--', 'Color', [0 1 0], 'LineWidth', 2);  % Agent 2 reference (light blue)
+plot(vt, y2Disk, '-', 'Color', [0 0 0], 'LineWidth', 2);          % Agent 2 actual (purple)
+title('');
+xlabel('$t$ (s)', 'Interpreter','latex');
+ylabel('$\mathcal{Y}$ (cm)', 'Interpreter','latex');
+legend({'Agent 1 Ref', 'Agent 1 Pos', 'Agent 2 Ref', 'Agent 2 Pos'}, ...
+    'Location', 'best', 'Color', 'w', 'Location', 'northeastoutside');
+set(gca, 'FontSize', 20, 'XColor', 'k', 'YColor', 'k');
 
-subplot(3, 2, 2);
-hold on;
-plot(vt, y2Disk, '-');
-plot(vt, xy2RefPlot(2, :), '--');
-title('Y2 Reference and Actual Positions');
-xlabel('Time Step');
-ylabel('Y Position');
-hold off;
+print(gcf, 'fig5.pdf', '-dpdf', '-painters', '-bestfit')
 
-subplot(3, 2, 3);
-plot(vt, vx2Disk, '-');
-title('X2 Velocity');
-xlabel('Time Step');
-ylabel('X Velocity');
 
-subplot(3, 2, 4);
-plot(vt, vy2Disk, '-');
-title('Y2 Velocity');
-xlabel('Time Step');
-ylabel('Y Velocity');
 
-subplot(3, 2, 5);
-hold on;
-plot(vt, u2IndPlot, '-');
-plot(vt, u2RefIndPlot, '--');
-title('Reference and Actual Control Signals 2');
-xlabel('Time Step');
-ylabel('Control Signal');
-hold off;
 
-subplot(3, 2, 6);
-plot(vt, e2NormPlot, '-');
-title('Error Norm 2');
-xlabel('Time Step');
-ylabel('Error Norm');
+fig = figure( ...
+    'Color', 'w', ...
+    'Units', 'inches', ...
+    'Position', [1 1 4 3]);%, ...
+    % 'Toolbar', 'figure', ...
+    % 'MenuBar', 'figure' ...);
+ax = axes('Parent', fig, 'Color', 'w'); 
+hold(ax, 'on'); grid(ax, 'on'); box(ax, 'on'); axis(ax, 'equal');
 
-print(gcf, 'fig3.pdf', '-dpdf', '-painters', '-bestfit')
 
-% Plot static dipoles and trajectory
-figure;
-axis([[-1, 1]*(floor(GridSpacing*(xGridSize-1)/2)+1), ...
-    [-1, 1]*(floor(GridSpacing*(yGridSize-1)/2)+1)]);
-pbaspect([1, 1, 1]); daspect([1, 1, 1]);
-box on; grid on;
-hold on;
-plot(xGrid(:), yGrid(:), 'g*');
+h1 = plot3(vt, x1Disk, y1Disk, 'r', 'LineWidth', 2);
 
-h1Disk = plot(x1Disk(1), y1Disk(1), 'ro', 'LineWidth', 2, 'MarkerSize', 12);  % Handle for actual plot
-h1Ref = plot(xy1RefPlot(1,1), xy1RefPlot(2,1), 'b^', 'LineWidth', 2, 'MarkerSize', 12);  % Handle for reference plot
-h1U = plot(xGrid(u1IndPlot(1)), yGrid(u1IndPlot(1)), 'rx', 'LineWidth', 2, 'MarkerSize', 12);  % Handle for active coil
+% Reference trajectory: dashed red
+h2 = plot3(vt, x2Disk, y2Disk, 'k', 'LineWidth', 2);
 
-h2Disk = plot(x2Disk(1), y2Disk(1), 'mo', 'LineWidth', 2, 'MarkerSize', 12);  % Handle for actual plot
-h2Ref = plot(xy2RefPlot(1,1), xy2RefPlot(2,1), 'c^', 'LineWidth', 2, 'MarkerSize', 12);  % Handle for reference plot
-h2U = plot(xGrid(u2IndPlot(1)), yGrid(u2IndPlot(1)), 'mx', 'LineWidth', 2, 'MarkerSize', 12);  % Handle for active coil
+yticks([-10, 10])
+zticks([-10, 10])
 
-title('Reference and Actual Movement of Moving Dipoles');
-xlabel('X position');
-ylabel('Y position');
-legend('Coil grid', 'Disk 1 pos', 'Ref 1 pos', 'Active coil 1', 'Disk 2 pos', 'Ref 2 pos', 'Active coil 2', ...
-    'location', 'northeastoutside');
+% yticks([-10,10])
+% zticks([-10,10])
+% Labels
+xlabel('$t$ (s)', 'Interpreter','latex', 'FontSize',14);
+ylabel('$\mathcal{X}$ (cm)', 'Interpreter','latex', 'FontSize',14);
+zlabel('$\mathcal{Y}$ (cm)', 'Interpreter','latex', 'FontSize',14);
 
-for k = 1:250:length(vt)-1
-    set(h1Disk, 'XData', x1Disk(k), 'YData', y1Disk(k));  % Update actual plot
-    set(h1Ref, 'XData', xy1RefPlot(1,k), 'YData', xy1RefPlot(2,k));  % Update reference plot
-    set(h1U, 'XData', xGrid(u1IndPlot(k)), 'YData', yGrid(u1IndPlot(k))); % Update active coil
+% Set correct 3D view to match your sample figure
+view([135, 30]);  % [azimuth, elevation]
 
-    set(h2Disk, 'XData', x2Disk(k), 'YData', y2Disk(k));  % Update actual plot
-    set(h2Ref, 'XData', xy2RefPlot(1,k), 'YData', xy2RefPlot(2,k));  % Update reference plot
-    set(h2U, 'XData', xGrid(u2IndPlot(k)), 'YData', yGrid(u2IndPlot(k))); % Update active coil
+% Axis formatting
+set(gca, ...
+    'FontSize', 12, ...
+    'TickLabelInterpreter', 'latex', ...
+    'XColor', 'k', ...
+    'YColor', 'k', ...
+    'ZColor', 'k');
 
-    drawnow;
-    % Step-by-step simulation
-%     if mod(k, 1000) == 1
-%         disp(['Force = (', num2str(FPlot(1,k)), ',', num2str(FPlot(2,k)), ')']);
-%         waitforbuttonpress;
-%     end
-end
-hold off;
-print(gcf, 'fig4.pdf', '-dpdf', '-painters', '-bestfit')
+
+
+axis tight 
+
 
 % =========================================
 % Functions
@@ -532,8 +513,8 @@ function [uIndSample1, uIndSample2] = SelectCoilFar(xySample, uRefIndSample, ANe
     uSampleSeq = flip(uSampleSeq);
     % [Debug] Outputs from dijkstra
     disp(['Disk ', num2str(diskInd), ' from ', num2str(minInd), ' to ', num2str(uRefIndSample)]);
-    disp(['dijkstra seq = ', num2str(uSampleSeq)]);
-    disp(['dijkstra cost = ', num2str(uSampleSeqCost)]);
+    disp(['seq = ', num2str(uSampleSeq)]);
+    % disp(['dijkstra cost = ', num2str(uSampleSeqCost)]);
     uSampleSeq = fliplr(uSampleSeq);
     % To-do: choose the best in the closest four
 
